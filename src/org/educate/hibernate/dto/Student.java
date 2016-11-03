@@ -5,18 +5,49 @@
  */
 package org.educate.hibernate.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MRuser
  */
-public class Student {
+public class Student implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
+    private Address correspondence;
+    private Address permanent;
+    private StudentAcademic academic;
 
     public Student() {
     }
 
+    public StudentAcademic getAcademic() {
+        return academic;
+    }
+
+    public void setAcademic(StudentAcademic academic) {
+        this.academic = academic;
+    }
+
+    
+    public Address getCorrespondence() {
+        return correspondence;
+    }
+
+    public void setCorrespondence(Address correspondence) {
+        this.correspondence = correspondence;
+    }
+
+    public Address getPermanent() {
+        return permanent;
+    }
+
+    public void setPermanent(Address permanent) {
+        this.permanent = permanent;
+    }
+    
+    
     public int getId() {
         return id;
     }

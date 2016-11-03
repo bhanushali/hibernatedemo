@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.educate.hibernate.dto.StudentAcademic" table="student_academic">
+        <id name="id" type="integer">
+            <column name="student_id"/>
+            <generator class="foreign">
+                <param name="property">student</param>
+            </generator>
+        </id>
+        <property name="rollNo" type="string">
+            <column name="roll_no" length="10"/>
+        </property>
+        <property name="alumni" type="integer">
+            <column name="is_alumni" default="0"/>
+        </property>
+        <one-to-one name="student" class="org.educate.hibernate.dto.Student"
+                    constrained="true">
+        </one-to-one>
+    </class>
+</hibernate-mapping>

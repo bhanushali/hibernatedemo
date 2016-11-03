@@ -12,5 +12,49 @@
         <property name="lastName" type="string">
             <column name="last_name" length="50" not-null="true"/>
         </property>
+        <component class="org.educate.hibernate.dto.Address" name="correspondence">
+            <property name="addressLine1" type="string">
+                <column name="c_address_line_1" length="255"/>
+            </property>                    
+            <property name="addressLine2" type="string">
+                <column name="c_address_line_2" length="255"/>
+            </property>                    
+            <property name="city" type="string">
+                <column name="c_city" length="50"/>
+            </property>                    
+            <property name="pincode" type="string">
+                <column name="c_pincode" length="50"/>
+            </property>                    
+            <property name="state" type="string">
+                <column name="c_state" length="50"/>
+            </property>                    
+            <property name="country" type="string">
+                <column name="c_country" length="50"/>
+            </property>                    
+        </component>
+         <component class="org.educate.hibernate.dto.Address" name="permanent">
+            <property name="addressLine1" type="string">
+                <column name="p_address_line_1" length="255"/>
+            </property>                    
+            <property name="addressLine2" type="string">
+                <column name="p_address_line_2" length="255"/>
+            </property>                    
+            <property name="city" type="string">
+                <column name="p_city" length="50"/>
+            </property>                    
+            <property name="pincode" type="string">
+                <column name="p_pincode" length="50"/>
+            </property>                    
+            <property name="state" type="string">
+                <column name="p_state" length="50"/>
+            </property>                    
+            <property name="country" type="string">
+                <column name="p_country" length="50"/>
+            </property>                    
+        </component> 
+        <!-- working with one-to-one relationship -->      
+        <one-to-one name="academic" class="org.educate.hibernate.dto.StudentAcademic"
+                    cascade="save-update">
+        </one-to-one>
     </class>
 </hibernate-mapping>

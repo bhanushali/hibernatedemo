@@ -13,5 +13,6 @@
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping resource="hibernatedemo/Student.hbm.xml"/>
+    <mapping resource="hibernatedemo/StudentAcademic.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

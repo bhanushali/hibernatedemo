@@ -5,7 +5,9 @@
  */
 package hibernatedemo;
 
+import org.educate.hibernate.dto.Address;
 import org.educate.hibernate.dto.Student;
+import org.educate.hibernate.dto.StudentAcademic;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -26,18 +28,37 @@ public class HibernateDemo {
         
         // Create a new student object
         Student x = new Student();
+        StudentAcademic x_academic = new StudentAcademic();
         x.setFirstName("Khozema");
         x.setLastName("Nullwala");
         
+        x_academic.setRollNo("S170001");
+        x_academic.setStudent(x);
+        
+        x.setAcademic(x_academic);
+        
+        Address permanent = new Address();
+        permanent.setAddressLine1("Amar Jyot Building, 3 / 306");
+        permanent.setAddressLine2("Anand Koliwada, Near Railway Crossing");
+        permanent.setCity("Thane");
+        permanent.setPincode("400612");
+        permanent.setState("Maharashtra");
+        permanent.setCountry("India");
+                
+        Address correspondence = new Address();
+        correspondence.setAddressLine1("Vianayak Apartment, 2 / 23");
+        correspondence.setAddressLine2("Dabolkar Road, Above Zaini Commerce Classes");
+        correspondence.setCity("Thane");
+        correspondence.setPincode("400612");
+        correspondence.setState("Maharashtra");
+        correspondence.setCountry("India");
+
+        
+        x.setCorrespondence(correspondence);
+        x.setPermanent(permanent);
+        
         session.persist(x);
-        
-        Student y = new Student();
-        y.setFirstName("Ahmed");
-        y.setLastName("Qureshi");
-        
-        session.persist(y);
-        
-        
+                
         tx.commit();
         session.close();
         
