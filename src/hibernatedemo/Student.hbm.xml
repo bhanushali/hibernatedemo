@@ -56,5 +56,14 @@
         <one-to-one name="academic" class="org.educate.hibernate.dto.StudentAcademic"
                     cascade="save-update">
         </one-to-one>
+        
+        <!-- Working with one-to-may relationship -->
+        <set name="books" table="book">
+            <key>
+                <column name="student_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.educate.hibernate.dto.Book"/>
+        </set>
+        
     </class>
 </hibernate-mapping>

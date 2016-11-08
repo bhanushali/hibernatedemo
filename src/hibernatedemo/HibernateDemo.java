@@ -6,6 +6,7 @@
 package hibernatedemo;
 
 import org.educate.hibernate.dto.Address;
+import org.educate.hibernate.dto.Book;
 import org.educate.hibernate.dto.Student;
 import org.educate.hibernate.dto.StudentAcademic;
 import org.hibernate.Session;
@@ -57,7 +58,28 @@ public class HibernateDemo {
         x.setCorrespondence(correspondence);
         x.setPermanent(permanent);
         
+        
+        // Couple of books instance
+        Book b = new Book();
+        b.setTitle("Not a penny more not a penny less");
+        // setting the student object
+        b.setStudent(x);
+
+        Book c = new Book();
+        c.setTitle("Like a flowing river");
+        // setting the student object
+        c.setStudent(x);                
+        
+        // for bidirectional assign the books to student
+        x.getBooks().add(b);
+        x.getBooks().add(c);
+        
+        
+        // student is persisted here        
         session.persist(x);
+        session.persist(b);
+        session.persist(c);
+        
                 
         tx.commit();
         session.close();

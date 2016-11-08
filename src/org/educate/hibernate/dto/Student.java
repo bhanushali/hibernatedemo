@@ -6,6 +6,8 @@
 package org.educate.hibernate.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -18,6 +20,18 @@ public class Student implements Serializable {
     private Address correspondence;
     private Address permanent;
     private StudentAcademic academic;
+    
+    /* Collection of books */
+    private Set<Book> books = new HashSet<>(0);
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+    /*--------------------------------------*/
 
     public Student() {
     }

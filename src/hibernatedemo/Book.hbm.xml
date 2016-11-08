@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.educate.hibernate.dto.Book" table="book">                
+        <id name="id" type="integer">
+            <column name="book_id"/>
+            <generator class="native"/>
+        </id>
+        <property name="title" type="string">
+            <column name="book_title" length="50" not-null="true"/>
+        </property>
+        <!-- For unidirectional relationship of many to one use the following code -->
+        <many-to-one name="student" class="org.educate.hibernate.dto.Student"
+            column="student_id" not-null="true" />
+        
+    </class>
+</hibernate-mapping>
