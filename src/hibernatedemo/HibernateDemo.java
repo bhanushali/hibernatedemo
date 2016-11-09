@@ -7,6 +7,7 @@ package hibernatedemo;
 
 import org.educate.hibernate.dto.Address;
 import org.educate.hibernate.dto.Book;
+import org.educate.hibernate.dto.Course;
 import org.educate.hibernate.dto.Student;
 import org.educate.hibernate.dto.StudentAcademic;
 import org.hibernate.Session;
@@ -75,10 +76,29 @@ public class HibernateDemo {
         x.getBooks().add(c);
         
         
+        // create instance of course
+        Course java = new Course();
+        java.setTitle("Core Java Programming");
+        
+        x.getCourses().add(java);
+        
+        
+        Course cpp = new Course();
+        cpp.setTitle("C++ Programming");
+
+        // adding of student for bidirectional
+        java.getStudents().add(x);
+        cpp.getStudents().add(x);
+        
+        x.getCourses().add(cpp);
+        
+        
         // student is persisted here        
+        session.persist(java);
+        session.persist(cpp);
         session.persist(x);
-        session.persist(b);
-        session.persist(c);
+//        session.persist(b);
+//        session.persist(c);
         
                 
         tx.commit();

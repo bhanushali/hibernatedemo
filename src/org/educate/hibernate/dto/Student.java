@@ -33,6 +33,20 @@ public class Student implements Serializable {
     }
     /*--------------------------------------*/
 
+    /* Courses enrolled */
+    private Set<Course> courses = new HashSet<>(0);
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+    
+    /*--------------------------------------------*/
+    
+    
     public Student() {
     }
 

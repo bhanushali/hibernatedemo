@@ -58,11 +58,19 @@
         </one-to-one>
         
         <!-- Working with one-to-may relationship -->
-        <set name="books" table="book">
+        <set name="books" table="book" cascade="save-update" inverse="true">
             <key>
                 <column name="student_id" not-null="true"/>
             </key>
             <one-to-many class="org.educate.hibernate.dto.Book"/>
+        </set>
+        
+        <!-- many-to-many relationship -->
+        <set name="courses" table="course_student_info" cascade="save-update" fetch="select" lazy="false">
+            <key>
+                <column name="student_id" not-null="true"/>
+            </key>
+            <many-to-many column="course_id" class="org.educate.hibernate.dto.Course" />
         </set>
         
     </class>
