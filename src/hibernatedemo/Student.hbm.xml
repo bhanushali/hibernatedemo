@@ -72,6 +72,5 @@
             </key>
             <many-to-many column="course_id" class="org.educate.hibernate.dto.Course" />
         </set>
-        
     </class>
 </hibernate-mapping>

@@ -16,5 +16,6 @@
     <mapping resource="hibernatedemo/StudentAcademic.hbm.xml"/>
     <mapping resource="hibernatedemo/Book.hbm.xml"/>
     <mapping resource="hibernatedemo/Course.hbm.xml"/>
+    <mapping resource="hibernatedemo/Lecturer.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

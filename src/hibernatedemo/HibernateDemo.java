@@ -8,8 +8,11 @@ package hibernatedemo;
 import org.educate.hibernate.dto.Address;
 import org.educate.hibernate.dto.Book;
 import org.educate.hibernate.dto.Course;
+import org.educate.hibernate.dto.Lecturer;
+import org.educate.hibernate.dto.Regular;
 import org.educate.hibernate.dto.Student;
 import org.educate.hibernate.dto.StudentAcademic;
+import org.educate.hibernate.dto.Visiting;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -100,6 +103,22 @@ public class HibernateDemo {
 //        session.persist(b);
 //        session.persist(c);
         
+        
+        // Working with inheritance
+        Lecturer lecturer = new Lecturer();
+        lecturer.setName("Anonymous");
+        
+        Regular khozema  = new Regular();
+        khozema.setName("Khozema Nullwala");
+        khozema.setSalary(10000.0);
+        
+        Visiting sudha  = new Visiting();
+        sudha.setName("Sudha Singh");
+        sudha.setHourlyCharges(1000);
+        
+        session.persist(lecturer);
+        session.persist(khozema);
+        session.persist(sudha);
                 
         tx.commit();
         session.close();

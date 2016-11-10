@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.educate.hibernate.dto.Lecturer" table="lecturer_demo">
+        <id name="id" type="integer">
+            <column name="lecturer_id"/>
+            <generator class="increment"/>
+        </id>
+        <discriminator column="disc_type" type="string"/>
+        <property name="name" type="string">
+            <column name="lecturer_name" length="50" not-null="true"/>
+        </property>
+        <subclass name="org.educate.hibernate.dto.Regular" discriminator-value="reg">
+            <property name="salary" type="double">
+                <column name="salary" not-null="false"/>
+            </property>            
+        </subclass>
+        <subclass name="org.educate.hibernate.dto.Visiting" discriminator-value="vis">
+            <property name="hourlyCharges" type="double">
+                <column name="hourly_charge" not-null="false"/>
+            </property>          
+        </subclass>
+                
+        <!-- Table Per Subclass -->
+<!--        <joined-subclass name="org.educate.hibernate.dto.Regular" table="reg_lecturer">
+            <key>
+                <column name="reg_lecturer_id" />
+            </key>
+            <property name="salary" type="double">
+                <column name="salary" not-null="true"/>
+            </property>
+        </joined-subclass>
+        <joined-subclass name="org.educate.hibernate.dto.Visiting" table="visit_lecturer">
+            <key>
+                <column name="visit_lecturer_id" />
+            </key>
+            <property name="hourlyCharges" type="double">
+                <column name="hourly_charge" not-null="true"/>
+            </property>
+        </joined-subclass>-->
+        <!-- Table Per Concrete Class -->
+<!--    <union-subclass name="org.educate.hibernate.dto.Visiting" table="visit_lecturer">
+            <property name="hourlyCharges" type="double">
+                <column name="hourly_charge" not-null="true"/>
+            </property>
+        </union-subclass>                        
+        <union-subclass name="org.educate.hibernate.dto.Regular" table="reg_lecturer">
+            <property name="salary" type="double">
+                <column name="salary" not-null="true"/>
+            </property>
+        </union-subclass>   -->
+        <!-- Table Per Hierarchy -->                                
+    </class>
+</hibernate-mapping>
