@@ -5,6 +5,8 @@
  */
 package hibernatedemo;
 
+import java.util.Iterator;
+import java.util.List;
 import org.educate.hibernate.dto.Address;
 import org.educate.hibernate.dto.Book;
 import org.educate.hibernate.dto.Course;
@@ -13,8 +15,11 @@ import org.educate.hibernate.dto.Regular;
 import org.educate.hibernate.dto.Student;
 import org.educate.hibernate.dto.StudentAcademic;
 import org.educate.hibernate.dto.Visiting;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -120,6 +125,43 @@ public class HibernateDemo {
         session.persist(khozema);
         session.persist(sudha);
                 
+        
+        // Fetch the details now
+        String hql = "FROM Visiting";
+        Query query = session.createQuery(hql);
+        List<Visiting> visitingLecturers = query.list();
+        // using enhanced for loop
+        for(Visiting v : visitingLecturers) {
+            System.out.println("Visiting Lecturers Name: " +v.getName());
+            System.out.println("Visiting Lecturers ID: " +v.getId());
+            System.out.println("Visiting Lecturers Hourly Charges: " +v.getHourlyCharges());
+        }
+        
+        hql = "FROM Regular";
+        query = session.createQuery(hql);
+        
+        // using iterator
+        for (Iterator<Regular> iterator = query.iterate(); iterator.hasNext();) {
+            Regular regular = (Regular)iterator.next();
+            System.out.println("Regular Lecturers Name: " +regular.getName());
+            System.out.println("Regular Lecturers ID: " +regular.getId());
+            System.out.println("Regular Lecturers Salary: " +regular.getSalary());            
+        }
+        
+        
+        // using criteria
+        Criteria criteria = session.createCriteria(Regular.class);
+        criteria.add(Restrictions.eq("name", "Khozema Nullwala"));        
+        List<Regular> regularLecturers = criteria.list();
+        for(Regular regular : regularLecturers) {
+            System.out.println("Regular Lecturers Name: " +regular.getName());
+            System.out.println("Regular Lecturers ID: " +regular.getId());
+            System.out.println("Regular Lecturers Salary: " +regular.getSalary());            
+        }
+        
+        
+        
+                               
         tx.commit();
         session.close();
         
